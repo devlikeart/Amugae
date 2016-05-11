@@ -3,17 +3,25 @@ package com.mimos.amugae;
 import android.content.res.Configuration;
 import android.os.Handler;
 import android.support.annotation.Nullable;
+import android.support.design.widget.TabLayout;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.view.menu.MenuBuilder;
 import android.support.v7.widget.Toolbar;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {                                               //하위버전을 지원
 
@@ -44,6 +52,13 @@ public class MainActivity extends AppCompatActivity {                           
         drawerToggle = new ActionBarDrawerToggle(this,drawerLayout,R.string.app_name,R.string.app_name);              // 드로어 토글 할당
         drawerLayout.addDrawerListener(drawerToggle);                                               // 드로어 레이아웃에 리스너 추가
 
+        ViewPager viewPager = (ViewPager) findViewById(R.id.viewpager);
+        viewPager.setAdapter(new SectionPagerAdapter(getSupportFragmentManager()));
+
+        TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
+
+
+        tabLayout.setupWithViewPager(viewPager);
     }
 
     @Override
@@ -111,5 +126,58 @@ public class MainActivity extends AppCompatActivity {                           
         return super.onOptionsItemSelected(item);
     }
 
+    public  static  class PlaceholderFragment extends  Fragment{
+        private static final String ARG_SECTION_NUMBER = "section_number";
+
+        public PlaceholderFragment(){
+
+        }
+
+        public  static PlaceholderFragment newInstance(int sectionNumber){
+            PlaceholderFragment fragment = new PlaceholderFragment();
+            Bundle args = new Bundle();
+            args.putInt(ARG_SECTION_NUMBER,sectionNumber);
+            fragment.setArguments(args);
+            return fragment;
+        }
+
+        public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanseState){
+
+            View rootView = inflater.inflate(R.layout.fragment_main, container, false);
+            TextView textView = (TextView) rootView.findViewById(R.id.section_label);
+            textView.setText("Hello"+getArguments().getInt(ARG_SECTION_NUMBER));
+            return rootView;
+
+        }
+    }
+    public class SectionPagerAdapter extends FragmentPagerAdapter{
+
+        public SectionPagerAdapter(FragmentManager fm) {
+            super(fm);
+        }
+
+        @Override
+        public Fragment getItem(int position) {
+            return PlaceholderFragment.newInstance(position + 1);
+        }
+
+        @Override
+        public int getCount() {
+            return 3;
+        }
+
+        @Override
+        public CharSequence getPageTitle(int position) {
+            switch (position){
+                case 0:
+                    return "관심 있는";
+                case 1:
+                    return "인기 있는";
+                case 2:
+                    return "새로운";
+            }
+            return null;
+        }
+    }
 
 }
