@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+   >
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/cardview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp">\
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="210dp"
+                android:id="@+id/cardImage"
+                android:scaleType="fitXY"/>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:layout_gravity="center_horizontal|bottom"
+                android:background="#88000000">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:id="@+id/imageClock"
+                    android:src="@drawable/ic_alarm_white_24dp"
+                    android:layout_marginLeft="10dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:text="방금 전"
+                    android:textColor="#ffffff"
+                    android:id="@+id/txtTime"
+                    android:gravity="center"
+                    android:layout_alignParentTop="true"
+                    android:layout_toRightOf="@+id/imageClock"
+                    android:layout_toEndOf="@+id/imageClock"
+                    android:layout_marginLeft="5dp" />
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:id="@+id/imageComment"
+                    android:src="@drawable/ic_textsms_white_24dp"
+                    android:layout_alignParentTop="true"
+                    android:layout_toLeftOf="@+id/txtComment"
+                    android:layout_toStartOf="@+id/txtComment"
+                    android:layout_marginRight="5dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:text="0"
+                    android:gravity="center"
+                    android:id="@+id/txtComment"
+                    android:layout_toLeftOf="@+id/imageLike"
+                    android:layout_toStartOf="@+id/imageLike"
+                    android:layout_marginRight="5dp"
+                    android:textColor="#ffffff"/>
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:id="@+id/imageLike"
+                    android:src="@drawable/ic_favorite_border_white_24dp"
+                    android:layout_alignParentTop="true"
+                    android:layout_toLeftOf="@+id/txtLike"
+                    android:layout_toStartOf="@+id/txtLike"
+                    android:layout_marginRight="5dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:text="0"
+                    android:gravity="center"
+                    android:id="@+id/txtLike"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginRight="10dp"
+                    android:textColor="#ffffff"/>
+            </RelativeLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="어제보다 더 나은 하루 보내기"
+                android:id="@+id/content"
+                android:layout_gravity="center"
+                android:textColor="#ffffff"
+                android:background="#99000000"
+                android:padding="5dp" />
+        </FrameLayout>
+
+
+    </android.support.v7.widget.CardView>
+</LinearLayout>

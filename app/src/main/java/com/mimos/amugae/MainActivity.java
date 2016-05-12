@@ -13,6 +13,8 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.view.menu.MenuBuilder;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -23,10 +25,11 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+
 public class MainActivity extends AppCompatActivity {                                               //하위버전을 지원
 
     private ActionBarDrawerToggle drawerToggle;                                                     //액션바 토글
-    private String[] drawerList ={"Home","Mypage","Reward","Setting"};                              //드로어 배열
 
 
 
@@ -37,6 +40,7 @@ public class MainActivity extends AppCompatActivity {                           
 
         //툴바는 setContentView 다음에 지정
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolBar);                                     // 툴바 선언
+
 
         setSupportActionBar(toolbar);                                                               //툴바를 액션바처럼 사용
 
@@ -144,8 +148,32 @@ public class MainActivity extends AppCompatActivity {                           
         public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanseState){
 
             View rootView = inflater.inflate(R.layout.fragment_main, container, false);
-            TextView textView = (TextView) rootView.findViewById(R.id.section_label);
-            textView.setText("Hello"+getArguments().getInt(ARG_SECTION_NUMBER));
+//            TextView textView = (TextView) rootView.findViewById(R.id.section_label);
+//            textView.setText("Hello"+getArguments().getInt(ARG_SECTION_NUMBER));
+
+            RecyclerView recyclerView = (RecyclerView) rootView.findViewById(R.id.recyclerview);
+            LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
+            recyclerView.setHasFixedSize(true);
+            recyclerView.setLayoutManager(layoutManager);
+
+
+
+
+            switch (getArguments().getInt(ARG_SECTION_NUMBER)){
+                case 1:
+                    break;
+                case 2:
+                    break;
+                case 3:
+                    ArrayList<CardviewItem> items = new ArrayList<>();
+                    items.add(new CardviewItem(0,R.drawable.clock,"어제보다 더 나은 하루 보내기",0,0,0));
+                    items.add(new CardviewItem(0,R.drawable.star,"별 볼일 있는 날",0,0,0));
+                    items.add(new CardviewItem(0,R.drawable.water,"나라는 화분에 물주기",0,0,0));
+                    items.add(new CardviewItem(0,R.drawable.waterme,"물 주세요!",0,0,0));
+                    recyclerView.setAdapter(new RecyclerAdapter(getContext(),items,R.layout.fragment_main));
+                    break;
+
+            }
             return rootView;
 
         }

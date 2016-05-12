@@ -16,7 +16,7 @@ import java.util.zip.Inflater;
  */
 public class DrawerAdapter extends BaseAdapter {
     Context context = null;
-    String[] drawer = {"홈","나","세팅"};
+    String[] drawer = {"홈","내 정보","설정"};
     @Override
     public int getCount() {
         return drawer.length;
